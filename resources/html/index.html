@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AppManager | Welcome</title>
+    <meta name="description" content="Welcome to AppManager, a simple and elegant web experience.">
+
+    <link rel="stylesheet" href="/AppManager/resources/css/style.css">
+    <script src="/AppManager/resources/js/app.js" defer></script>
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="#" class="logo">
+            <span class="logo-mark">A</span>
+            AppManager
+        </a>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <button class="theme-toggle" id="themeToggle"
+                aria-label="Switch color theme" title="Switch theme">
+            ☾
+        </button>
+
+        <button class="menu-toggle" id="menuToggle"
+                aria-label="Toggle navigation" aria-expanded="false">
+            ☰
+        </button>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-glow"></div>
+
+            <div class="hero-content">
+                <span class="eyebrow">
+                    <span class="pulse-dot"></span>
+                    SIMPLE. MODERN. ELEGANT.
+                </span>
+
+                <h1>
+                    A better way to
+                    <span class="gradient-text">get things done.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Welcome to AppManager. A clean, thoughtful space
+                    designed to keep things simple and help you focus
+                    on what really matters.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#about" class="button button-primary">
+                        Explore more <span>↗</span>
+                    </a>
+
+                    <button class="button button-secondary" id="helloButton">
+                        Say hello <span>→</span>
+                    </button>
+                </div>
+
+                <p class="interaction-message" id="message" aria-live="polite"></p>
+            </div>
+
+            <div class="scroll-indicator">
+                <span class="scroll-line"></span>
+                Scroll to explore
+            </div>
+        </section>
+
+        <section class="about-section" id="about">
+            <span class="section-label">A LITTLE ABOUT US</span>
+
+            <h2>Less clutter.<br><span>More clarity.</span></h2>
+
+            <p>
+                Great experiences don't need to be complicated.
+                We believe in thoughtful design, meaningful details,
+                and technology that simply works.
+            </p>
+
+            <div class="divider"></div>
+
+            <p class="small-note">
+                Designed with care. Built for simplicity.
+            </p>
+        </section>
+
+        <section class="contact-section" id="contact">
+            <h2>Have something in mind?</h2>
+            <p>Every great idea starts with a conversation.</p>
+            <a class="contact-link" href="mailto:hello@example.com">
+                Get in touch <span>↗</span>
+            </a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <a href="#home" class="footer-logo">AppManager.</a>
+        <p>© <span id="year"></span> AppManager. Made with care.</p>
+        <a href="#home" class="back-to-top">Back to top ↑</a>
+    </footer>
+
+</body>
+</html>
