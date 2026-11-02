@@ -1,21 +1,32 @@
 <?php
 # fopen()
 # $file is file handle, an variable represents the connection to that file
-$filePath = __DIR__ . "/phprv2.php";
-$file = fopen($filePath, "rb");
+
+$filePath = __DIR__ . "/file.txt";
+$file = fopen($filePath, "r"); # fopen returns an file handle or false on error
+
 if ($file === false) {
-    echo "Something went wrong while opening the file...!";
-    return;
+    die("Could not open the file");
 }
+
 try {
-    echo "Opening the file..!";
-    $content = stream_get_contents($file);
+    # writing in the file
+    $text = "This is magic text i want to write into the file";
+    $bytes = fwrite($file, $text);
+    if ($bytes === false) {
+        throw new RuntimeException("Could not write to the file.");
+    }
+
+    rewind($file);
+    // $content = stream_get_contents($file);
+    $content = fread($file, $bytes);
     if ($content === false) {
         throw new RuntimeException("Could not read the file.");
     }
-    echo "<br>";
+    echo $bytes . "<br>";
     echo $content;
 } catch (Throwable $e) {
+
     $errorRes = [
         "Status" => false,
         "Message" => "Connection Failed",
@@ -24,7 +35,6 @@ try {
         "Line" => $e->getLine(),
         "code" => $e->getCode(),
     ];
-
     echo json_encode($errorRes, JSON_PRETTY_PRINT);
 } finally {
     fclose($file);
@@ -37,4 +47,6 @@ try {
  * r+ = read and write : file must exists : otherwise error
  * w+ = read and write : create file or truncate existing file : 
  * a+ = read and append : create file if missing
+ * x + =  write : create new file if dont find, if present gives error
+ * x+ = read and write : create new file and if present already gives error
  */
