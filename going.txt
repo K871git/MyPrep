@@ -1,0 +1,29 @@
+	
+
+File modes – r, w, a, r+, etc.
+
+fwrite() – Write into a file
+
+fread() – Read file contents
+
+fgets() and fgetc()
+
+fclose() – Close a file
+
+file_get_contents()
+
+file_put_contents()
+
+file_exists() and filesize()
+
+unlink() – Delete a file
+
+copy() and rename()
+
+Directory handling
+
+File uploads
+
+File handling security
+
+Practical interview problems

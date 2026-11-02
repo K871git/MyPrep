@@ -2,7 +2,7 @@
 <?php
 require_once "database/debug_config.php";
 // Main entry point for the Core PHP project
-include "/database/db_mysqli.php";
+// require __DIR__."database/db_mysqli.php";
 
 $page = $_GET['page'] ?? 'index';
 
