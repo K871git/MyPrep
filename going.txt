@@ -1,27 +1,142 @@
-File modes – r, w, a, r+, etc.
+Batch 2: File operations and directory handling
+Three concepts. Let's go.
 
-fwrite() – Write into a file
+1. unlink() – Delete a file
+Deletes a file.
 
-fread() – Read file contents
 
-fgets() and fgetc()
+php
+$file = "app.txt";
 
-fclose() – Close a file
+if (file_exists($file)) {
+    if (unlink($file)) {
+        echo "File deleted";
+    }
+}
+Interview points:
 
-file_get_contents()
+unlink() deletes files, not directories.
 
-file_put_contents()
+Returns true on success and false on failure.
 
-file_exists() and filesize()
+Requires appropriate filesystem permissions.
 
-unlink() – Delete a file
+2. copy() and rename()
+copy() – Copy a file
+Original file remains untouched.
 
-copy() and rename()
 
-Directory handling
+php
+if (copy("app.txt", "backup.txt")) {
+    echo "File copied";
+}
+Result:
 
-File uploads
 
-File handling security
+text
+app.txt       → Original
+backup.txt    → Copy
+rename() – Rename or move a file
 
-Practical interview problems
+php
+rename("app.txt", "new_app.txt");
+You can also move a file to another directory:
+
+
+php
+rename("app.txt", "backup/app.txt");
+Important interview difference:
+
+Function
+
+Behaviour
+
+copy()
+
+Creates another copy
+
+rename()
+
+Renames or moves the original
+
+unlink()
+
+Deletes the file
+
+3. Directory handling
+These are the important Core PHP functions.
+
+mkdir() – Create directory
+
+php
+mkdir("uploads");
+Create nested directories:
+
+
+php
+mkdir("uploads/images", 0777, true);
+The third argument true enables recursive directory creation.
+
+rmdir() – Remove directory
+
+php
+rmdir("uploads");
+Important: Directory must be empty.
+
+scandir() – List directory contents
+
+php
+$files = scandir("uploads");
+
+print_r($files);
+Returns an array of directory entries, including . and ...
+
+is_dir() and is_file()
+
+php
+$path = "uploads";
+
+if (is_dir($path)) {
+    echo "It's a directory";
+}
+
+if (is_file("app.txt")) {
+    echo "It's a file";
+}
+Remember:
+
+file_exists() → Checks whether a path exists.
+
+is_file() → Checks whether it's a regular file.
+
+is_dir() → Checks whether it's a directory.
+
+Interview practice – Batch 2
+Answer these before we move to uploads.
+
+Q1. Difference between unlink() and rmdir()?
+
+Q2. Difference between copy() and rename()?
+
+Q3. Can rmdir() delete a non-empty directory?
+
+Q4. What does the third parameter true do in mkdir()?
+
+Q5. What does scandir() return?
+
+Practical coding problem
+Write PHP code to:
+
+Create a directory called backup.
+
+Check whether app.txt exists.
+
+Copy app.txt into backup/app.txt.
+
+Check whether the copied file exists.
+
+Display its size.
+
+Don't rush. Write clean code with proper error handling.
+
+Next: Batch 3 – File uploads, file security and SE-I practical interview problems.
