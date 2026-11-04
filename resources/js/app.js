@@ -37,11 +37,11 @@ navLinks.querySelectorAll("a").forEach((link) => {
     });
 });
 
-// Add a small interactive greeting.
-helloButton.addEventListener("click", () => {
-    message.textContent = "Hello there! 👋 Thanks for stopping by.";
-    helloButton.innerHTML = "Nice to meet you <span>✓</span>";
-});
+// // Add a small interactive greeting.
+// helloButton.addEventListener("click", () => {
+//     message.textContent = "Hello there! 👋 Thanks for stopping by.";
+//     helloButton.innerHTML = "Nice to meet you <span>✓</span>";
+// });
 
 // Keep the mobile menu closed when returning to desktop width.
 window.addEventListener("resize", () => {
@@ -50,4 +50,19 @@ window.addEventListener("resize", () => {
         menuToggle.setAttribute("aria-expanded", "false");
         menuToggle.textContent = "☰";
     }
+});
+
+
+
+// ===============================================================================
+const uploadForm = document.getElementById("fileuploadForm");
+
+uploadForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(uploadForm);
+
+    // try-catch to send this data to backend
+    
+    
 });
