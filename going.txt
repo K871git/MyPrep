@@ -1,142 +1,218 @@
-Batch 2: File operations and directory handling
-Three concepts. Let's go.
+Batch 3: File Uploads and File Security (Core PHP)
+Let's cover three concepts.
 
-1. unlink() – Delete a file
-Deletes a file.
+1. File Upload – $_FILES
+PHP uses the $_FILES superglobal to handle uploaded files.
+
+HTML form:
+
+<form method="POST" enctype="multipart/form-data">
+    <input type="file" name="myfile">
+    <button type="submit">Upload</button>
+</form>
+PHP code:
 
 
 php
-$file = "app.txt";
+if (isset($_FILES['myfile'])) {
 
-if (file_exists($file)) {
-    if (unlink($file)) {
-        echo "File deleted";
+    $file = $_FILES['myfile'];
+
+    move_uploaded_file(
+        $file['tmp_name'],
+        "uploads/" . $file['name']
+    );
+
+    echo "File uploaded";
+}
+Understand $_FILES
+PHP provides these important properties:
+
+Property
+
+Meaning
+
+name
+
+Original filename
+
+tmp_name
+
+Temporary file location
+
+size
+
+File size in bytes
+
+type
+
+Browser-reported MIME type
+
+error
+
+Upload error code
+
+Important concept:
+
+tmp_name → Where PHP temporarily stores the uploaded file.
+
+name → Original filename.
+
+move_uploaded_file() → Moves the uploaded file to your destination.
+
+2. File Upload Validation
+Never trust uploaded files.
+
+Before uploading, validate:
+
+File extension.
+
+File size.
+
+Actual file type.
+
+Upload error.
+
+Example:
+
+
+php
+if (isset($_FILES['myfile'])) {
+
+    $file = $_FILES['myfile'];
+
+    $allowed = ['jpg', 'png', 'pdf'];
+
+    $extension = strtolower(
+        pathinfo($file['name'], PATHINFO_EXTENSION)
+    );
+
+    if ($file['error'] !== UPLOAD_ERR_OK) {
+        die("Upload failed");
     }
-}
-Interview points:
 
-unlink() deletes files, not directories.
+    if (!in_array($extension, $allowed)) {
+        die("Invalid file extension");
+    }
 
-Returns true on success and false on failure.
+    if ($file['size'] > 2 * 1024 * 1024) {
+        die("File too large");
+    }
 
-Requires appropriate filesystem permissions.
-
-2. copy() and rename()
-copy() – Copy a file
-Original file remains untouched.
-
-
-php
-if (copy("app.txt", "backup.txt")) {
-    echo "File copied";
-}
-Result:
-
-
-text
-app.txt       → Original
-backup.txt    → Copy
-rename() – Rename or move a file
-
-php
-rename("app.txt", "new_app.txt");
-You can also move a file to another directory:
-
-
-php
-rename("app.txt", "backup/app.txt");
-Important interview difference:
-
-Function
-
-Behaviour
-
-copy()
-
-Creates another copy
-
-rename()
-
-Renames or moves the original
-
-unlink()
-
-Deletes the file
-
-3. Directory handling
-These are the important Core PHP functions.
-
-mkdir() – Create directory
-
-php
-mkdir("uploads");
-Create nested directories:
-
-
-php
-mkdir("uploads/images", 0777, true);
-The third argument true enables recursive directory creation.
-
-rmdir() – Remove directory
-
-php
-rmdir("uploads");
-Important: Directory must be empty.
-
-scandir() – List directory contents
-
-php
-$files = scandir("uploads");
-
-print_r($files);
-Returns an array of directory entries, including . and ...
-
-is_dir() and is_file()
-
-php
-$path = "uploads";
-
-if (is_dir($path)) {
-    echo "It's a directory";
-}
-
-if (is_file("app.txt")) {
-    echo "It's a file";
+    echo "File validation successful";
 }
 Remember:
 
-file_exists() → Checks whether a path exists.
+pathinfo() → Extracts file information.
 
-is_file() → Checks whether it's a regular file.
+PATHINFO_EXTENSION → Gets file extension.
 
-is_dir() → Checks whether it's a directory.
+strtolower() → Converts text to lowercase.
 
-Interview practice – Batch 2
-Answer these before we move to uploads.
+in_array() → Checks whether a value exists in an array.
 
-Q1. Difference between unlink() and rmdir()?
+UPLOAD_ERR_OK → Upload completed successfully.
 
-Q2. Difference between copy() and rename()?
+Note: Extension checking alone is not sufficient. Use server-side MIME validation with finfo_file() as well.
 
-Q3. Can rmdir() delete a non-empty directory?
+3. File Security
+Three important security practices.
 
-Q4. What does the third parameter true do in mkdir()?
+A. Never trust original filenames
+Bad:
 
-Q5. What does scandir() return?
 
-Practical coding problem
-Write PHP code to:
+php
+move_uploaded_file(
+    $file['tmp_name'],
+    "uploads/" . $file['name']
+);
+Better:
 
-Create a directory called backup.
 
-Check whether app.txt exists.
+php
+$newName = bin2hex(random_bytes(16)) . "." . $extension;
 
-Copy app.txt into backup/app.txt.
+move_uploaded_file(
+    $file['tmp_name'],
+    "uploads/" . $newName
+);
+Why?
 
-Check whether the copied file exists.
+Prevents filename collisions.
 
-Display its size.
+Avoids trusting user-provided filenames.
 
-Don't rush. Write clean code with proper error handling.
+Makes filenames unpredictable.
 
-Next: Batch 3 – File uploads, file security and SE-I practical interview problems.
+B. Validate actual file type
+
+php
+$finfo = finfo_open(FILEINFO_MIME_TYPE);
+
+$mime = finfo_file($finfo, $file['tmp_name']);
+
+finfo_close($finfo);
+
+echo $mime;
+This checks the file's MIME type using its contents rather than trusting the browser.
+
+C. Store uploads safely
+Avoid storing uploaded files in publicly executable directories.
+
+Prefer:
+
+Store uploads outside the public web root.
+
+Restrict access to uploaded files.
+
+Never execute uploaded files as PHP code. 
+i want to go step by step here is my code again for html and js
+i amhandling the file handling with js+php ok
+so i dont actually using the action in form 
+  <form
+        class="contact-form"
+        action="#"
+        method="post"
+        enctype="multipart/form-data"
+        id="fileuploadForm"
+      >
+        <div>
+          <label for="uploader">Uploader Name</label>
+          <input
+            type="text"
+            id="uploader"
+            name="uploader"
+            placeholder="Enter your name"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="file">Choose File</label>
+          <input type="file" id="file" name="uploaded_file" required />
+        </div>
+
+        <button type="submit" class="button button-primary">
+          Upload File <span>↑</span>
+        </button>
+      </form>
+const uploadForm = document.getElementById("fileuploadForm");
+
+uploadForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const uploaderName = document.getElementsByName("uploader");
+    console.log(uploaderName);
+});
+so 
+dont bluff
+dont give extra unnecessary stuff
+give exctly what i need
+ok go forword please
+and make it happen 
+dont go very long 
+go step by step 
+right now js handling
+then php
+then return response appropriate
