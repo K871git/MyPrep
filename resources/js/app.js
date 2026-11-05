@@ -95,6 +95,7 @@ uploadForm.addEventListener("submit", async function (e) {
             return;
         }
         console.log(result.message);
+        console.log("Saved filename:", result.filename);
 
     } catch (error) {
         console.error("Upload failed :", error);
