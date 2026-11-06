@@ -1,3 +1,15 @@
+AppManager/
+    /phprv
+    /resources
+        /php
+        /html
+        /css
+        /js
+    /uploads
+index.php
+web.config
+
+
 1. Sessions & Cookies ← next
 
 session_start(), $_SESSION, session_destroy()
@@ -26,3 +38,166 @@ Custom exceptions
 header("Content-Type: application/json")
 Handle GET/POST in PHP
 Return JSON response
+
+
+
+done yet 
+
+
+<?php
+
+session_start();
+
+header("Content-Type: application/json");
+
+// Get submitted credentials
+$username = $_POST['username'] ?? '';
+$password = $_POST['password'] ?? '';
+
+// Demo user (temporary; database comes later)
+$storedUsername = "admin";
+$storedPassword = password_hash("Admin@123", PASSWORD_DEFAULT);
+
+// Validate credentials
+if (
+    $username === $storedUsername &&
+    password_verify($password, $storedPassword)
+) {
+
+    // Prevent session fixation
+    session_regenerate_id(true);
+
+    // Create session variables
+    $_SESSION['username'] = $username;
+    $_SESSION['logged_in'] = true;
+
+    echo json_encode([
+        "success" => true,
+        "message" => "Login successful"
+    ]);
+
+} else {
+
+    echo json_encode([
+        "success" => false,
+        "message" => "Invalid username or password"
+    ]);
+
+}
+
+
+
+<?php
+
+session_start();
+
+// Check authentication
+if (empty($_SESSION['logged_in'])) {
+    header("Location: /AppManager/index.php");
+    exit;
+}
+
+$username = htmlspecialchars($_SESSION['username']);
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AppManager | Dashboard</title>
+</head>
+<body>
+
+    <h1>Welcome, <?= $username ?>!</h1>
+
+    <p>You are successfully logged in.</p>
+
+</body>
+</html>
+
+
+===========
+
+Step 6: Test your application
+Demo credentials
+Field
+
+Value
+
+Username
+
+admin
+
+Password
+
+Admin@123
+
+Expected flow:
+
+Open http://localhost/AppManager/.
+
+Enter credentials.
+
+JavaScript sends POST request.
+
+PHP validates credentials.
+
+PHP creates a session.
+
+JavaScript redirects to dashboard.
+
+Dashboard checks the session.
+
+Welcome message appears.
+
+What happens behind the scenes?
+One important concept before we continue.
+
+When PHP executes:
+
+
+php
+session_start();
+PHP creates or resumes a session and typically uses a browser cookie named:
+
+
+text
+PHPSESSID
+The browser stores the session ID, while PHP stores the session data on the server.
+
+Browser
+
+Cookie: PHPSESSID = abc123
+
+PHP Server
+
+Session ID: abc123
+
+username = admin
+
+logged_in = true
+
+That's the fundamental difference:
+
+Cookie: Stored in the browser.
+
+Session: Data stored on the server.
+
+Session ID: Connects the browser to its server-side session.
+
+Next: Session destruction
+Once you confirm this login works, we'll implement:
+
+$_SESSION — understand reading and writing.
+
+session_destroy() — logout properly.
+
+session_unset() — clear session variables.
+
+setcookie() — create custom cookies.
+
+$_COOKIE — read cookies.
+
+Cookie expiration and deletion.
+
+First, implement these five steps and confirm whether login redirects successfully to the dashboard.

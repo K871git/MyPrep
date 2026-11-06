@@ -92,22 +92,45 @@ VALUES (
         '9.1'
     );
 
-    INSERT INTO `devices`
-    (`user_id`, `device_name`, `device_type`, `device_identifier`)
-VALUES
-    (1, 'Samsung Galaxy S24', 'Android', 'DEVICE-001'),
-    (1, 'iPhone 15', 'iOS', 'DEVICE-002'),
-    (2, 'Google Pixel 9', 'Android', 'DEVICE-003');
+INSERT INTO
+    `devices` (
+        `user_id`,
+        `device_name`,
+        `device_type`,
+        `device_identifier`
+    )
+VALUES (
+        1,
+        'Samsung Galaxy S24',
+        'Android',
+        'DEVICE-001'
+    ),
+    (
+        1,
+        'iPhone 15',
+        'iOS',
+        'DEVICE-002'
+    ),
+    (
+        2,
+        'Google Pixel 9',
+        'Android',
+        'DEVICE-003'
+    );
 
-    INSERT INTO `appData`
-    (`device_id`, `app_id`, `installed_version`)
-VALUES
-    (1, 1, '2.26.1'),  -- WhatsApp on Samsung
-    (1, 2, '410.0'),   -- Instagram on Samsung
-    (1, 3, '21.10'),   -- YouTube on Samsung
-    (1, 4, '26.0'),    -- Google Maps on Samsung
-    (2, 1, '2.26.1'),  -- WhatsApp on iPhone
-    (2, 2, '410.0'),   -- Instagram on iPhone
-    (3, 1, '2.26.1'),  -- WhatsApp on Pixel
-    (3, 3, '21.10'),   -- YouTube on Pixel
-    (3, 5, '9.1');     -- Spotify on Pixel
+INSERT INTO
+    `appData` (
+        `device_id`,
+        `app_id`,
+        `installed_version`
+    )
+VALUES (1, 1, '2.26.1'), -- WhatsApp on Samsung
+    (1, 2, '410.0'), -- Instagram on Samsung
+    (1, 3, '21.10'), -- YouTube on Samsung
+    (1, 4, '26.0'), -- Google Maps on Samsung
+    (2, 1, '2.26.1'), -- WhatsApp on iPhone
+    (2, 2, '410.0'), -- Instagram on iPhone
+    (3, 1, '2.26.1'), -- WhatsApp on Pixel
+    (3, 3, '21.10'), -- YouTube on Pixel
+    (3, 5, '9.1');
+-- Spotify on Pixel
