@@ -20,7 +20,7 @@ $allowed_ext_types = ["jpeg", "jpg", "pdf", "png", "txt"];
 $allowed_mime_types = [
     'jpg' => 'image/jpg',
     'png' => 'image/png',
-    'pdf' => 'application/png',
+    'pdf' => 'application/pdf',
     'txt' => 'text/plain',
 ];
 
@@ -29,7 +29,6 @@ $extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
 if (!in_array($extension, $allowed_ext_types)) {
     sendMessage(400, false, "Invalid file type..!");
 }
-
 
 # checking MIME type
 $finfo = finfo_open(FILEINFO_MIME_TYPE);

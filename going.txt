@@ -1,0 +1,28 @@
+1. Sessions & Cookies ← next
+
+session_start(), $_SESSION, session_destroy()
+setcookie(), $_COOKIE
+2. Forms & Validation
+
+$_GET, $_POST, $_REQUEST
+isset(), empty(), filter_var()
+Sanitize vs Validate
+3. Database (MySQLi / PDO)
+
+Connect, query, fetch
+Prepared statements (prevent SQL injection)
+CRUD operations
+4. OOP Basics
+
+Class, object, constructor
+public, private, protected
+Inheritance, interface
+5. Error Handling
+
+try / catch / finally
+Custom exceptions
+6. REST API Basics
+
+header("Content-Type: application/json")
+Handle GET/POST in PHP
+Return JSON response
