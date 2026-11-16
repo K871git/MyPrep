@@ -1,5 +1,5 @@
 <?php
-// session_start(); # needed for initialize new session
+// session_start(); # needed for initialize new session or resumes the session
 
 // $_SESSION['username'] = 'admin';
 // $_SESSION['logged_in'] = true;

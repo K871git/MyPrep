@@ -1,6 +1,7 @@
 const loginForm = document.getElementById("loginForm");
 const loginMessage = document.getElementById("loginMessage");
-const url = "/appmanager/resources/php/sessionP.php";
+// const url = "/appmanager/resources/php/sessionP.php";
+const url = "/appmanager/resources/php/login.php";
 loginForm.addEventListener("submit", async function (event) {
     event.preventDefault();
     const formData = new FormData(loginForm);
