@@ -1,19 +1,22 @@
 <?php
-session_start(); # needed for initialize new session
+// session_start(); # needed for initialize new session
 
-$_SESSION['username'] = 'admin';
-$_SESSION['logged_in'] = true;
+// $_SESSION['username'] = 'admin';
+// $_SESSION['logged_in'] = true;
 // $_SESSION = [];
-session_destroy();
+
+# setcookie
+setcookie('ok', 'cookie_set_using_setcookie() function', time() + 3600, '/');
+
 try {
 
-    if (isset($_SESSION['username'])) {
-        $msg = "username exists";
+    if (isset($_COOKIE['ok'])) {
+        $val = $_COOKIE['ok'];
     }
 
     $response = [
         "status" => true,
-        "message" => $msg ?? "Username not exists",
+        "message" => $val ?? "cookie not exists",
     ];
     echo json_encode($response, JSON_PRETTY_PRINT);
 } catch (Throwable $e) {
@@ -26,4 +29,5 @@ try {
     echo json_encode($response, JSON_PRETTY_PRINT);
 } finally {
     session_unset(); # remove all session variables
+    session_destroy();
 }
