@@ -201,3 +201,4 @@ $_COOKIE — read cookies.
 Cookie expiration and deletion.
 
 First, implement these five steps and confirm whether login redirects successfully to the dashboard.
+go step by step ok ill ask for next steps

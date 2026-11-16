@@ -12,11 +12,12 @@ loginForm.addEventListener("submit", async function (event) {
         });
 
         const result = await response.json();
-        loginMessage.textContent = result.message;
+        // loginMessage.textContent = result.message;
+        console.log(result)
 
-        setTimeout(() => {
-            window.location.href = "/appmanager/resources/php/dashboard.php";
-        }, 1000);
+        // setTimeout(() => {
+        //     window.location.href = "/appmanager/resources/php/dashboard.php";
+        // }, 1000);
     } catch (error) {
         loginMessage.textContent = "Something went wrong...!";
         console.log("Error :", error)

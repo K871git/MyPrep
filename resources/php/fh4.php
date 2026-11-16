@@ -7,6 +7,8 @@ try {
     $text = ["Avengers", "Age of Ultron", "Infinity War", "Endgame"];
     $string = implode(PHP_EOL, $text);
     echo "\n";
+    echo $string;
+    exit;
 
     // file_put_contents($filePath, $string); # override by default
     file_put_contents($filePath, "\n" . $string, FILE_APPEND); # append at the end
