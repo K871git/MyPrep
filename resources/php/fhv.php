@@ -16,7 +16,7 @@ class Dog extends Animal
     }
 }
 
-class Cat extends Animal
+class Cat extends Dog
 {
     public function Meow(): void
     {
@@ -24,12 +24,28 @@ class Cat extends Animal
     }
 }
 
+# multilevel inheritance
+// parent_class->sub_parent_class->sub2_parent_class->child_class
 
-$d = new Dog();
-$c = new Cat();
+// $d = new Dog();
+// $c = new Cat();
 
-$d->eat();
-$d->Bark();
-echo "------------------------\n";
-$c->eat();
-$c->Meow();
+// $d->eat();
+// $d->Bark();
+// echo "------------------------\n";
+// $c->eat();
+// $c->Meow();
+
+// class multiple extends Animal, Dog # invalid
+// {}
+
+# diamond problem
+
+/**
+ *         Animal
+       /      \
+   Walker    Swimmer
+       \      /
+         Duck
+ * 
+ */
