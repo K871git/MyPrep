@@ -1,38 +1,51 @@
 <?php
 
 # class must provide all these methods
-// interface TaskInterface
+interface TaskInterface
+{
+    public function getId(): string;
+
+    public function getTitle(): string;
+
+    public function toArray(): array;
+}
+
+// class Animal
 // {
-//     public function getId(): string;
+//     private $animal = "Platypus";
 
-//     public function getTitle(): string;
-
-//     public function toArray(): array;
+//     public function showAnimal(): string
+//     {
+//         return $this->animal;
+//     }
 // }
 
-class Animal
-{
-    private $animal = "Platypus";
 
-    public function showAnimal(): string
-    {
-        return $this->animal;
-    }
-}
+// class Bird extends Animal
+// {
+
+//     public function check(): void
+//     {
+//         echo $this->showAnimal();
+//     }
+// }
+
+// $animal = new Animal();
+// // echo $animal->showAnimal();
+
+// $bird = new Bird();
+// $bird->check();
+// var_dump($bird);
 
 
-class Bird extends Animal
-{
+# Access Modifiers 
 
-    public function check(): void
-    {
-        echo $this->showAnimal();
-    }
-}
+# Public : access from anywhere
 
-$animal = new Animal();
-// echo $animal->showAnimal();
+# Protected :   - access from class where it declared 
+//              - can assess props and methods from child class
+//              - cannot access outside
 
-$bird = new Bird();
-$bird->check();
-var_dump($bird);
+# Private :   - access only from class where it declared 
+//              - cannot assess props and methods from child class as well as outside the class
+# Use public methods to provide safe access to private or protected data.
