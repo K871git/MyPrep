@@ -1,4 +1,6 @@
 <?php
+include_once __DIR__ . "/../error_report.php";
+include_once __DIR__ . "/../interfaces/TaskInterface.php";
 
 abstract class BaseTask implements TaskInterface
 {
@@ -6,9 +8,29 @@ abstract class BaseTask implements TaskInterface
     protected string $id;
     protected string $title;
 
-    public function __construct()
+    # static property
+    public static string $name;
+
+    public function __construct(string $id, string $title, string $name)
     {
-        throw new \Exception('Not implemented');
+        $this->id = $id;
+        $this->title = $title;
+        self::$name = $name;
     }
-    
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public static function getStatVal(): string
+    {
+        return self::$name;
+    }
+    abstract public function toArray(): array;
 }
