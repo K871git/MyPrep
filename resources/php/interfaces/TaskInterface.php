@@ -49,3 +49,6 @@ interface TaskInterface
 # Private :   - access only from class where it declared 
 //              - cannot assess props and methods from child class as well as outside the class
 # Use public methods to provide safe access to private or protected data.
+
+# Abstract class is genric class and make code reusable and also provide the methods implementation for common and resuable methods
+# abstract methods must be implement and should provide method body by inherited child class, abstract method does not have method body, just decleration

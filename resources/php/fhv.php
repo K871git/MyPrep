@@ -1,28 +1,28 @@
 <?php
 
-class Animal
-{
-    public function eat(): void
-    {
-        echo "animal : Eating \n";
-    }
-}
+// class Animal
+// {
+//     public function eat(): void
+//     {
+//         echo "animal : Eating \n";
+//     }
+// }
 
-class Dog extends Animal
-{
-    public function Bark(): void
-    {
-        echo "Dog : Barking \n";
-    }
-}
+// class Dog extends Animal
+// {
+//     public function Bark(): void
+//     {
+//         echo "Dog : Barking \n";
+//     }
+// }
 
-class Cat extends Dog
-{
-    public function Meow(): void
-    {
-        echo "Cat : Sleeping \n";
-    }
-}
+// class Cat extends Dog
+// {
+//     public function Meow(): void
+//     {
+//         echo "Cat : Sleeping \n";
+//     }
+// }
 
 # multilevel inheritance
 // parent_class->sub_parent_class->sub2_parent_class->child_class
@@ -49,3 +49,9 @@ class Cat extends Dog
          Duck
  * 
  */
+
+interface PrintDoc
+{
+    public function printHello(): string;
+}
+
