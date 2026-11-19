@@ -9,13 +9,14 @@ abstract class BaseTask implements TaskInterface
     protected string $title;
 
     # static property
-    public static string $name;
-
-    public function __construct(string $id, string $title, string $name)
+    // public static string $name;
+    public const EXACT = "constant prop";
+    public const lowerCase = 'Its Lowercase cosntant';
+    public function __construct(string $id, string $title)
     {
         $this->id = $id;
         $this->title = $title;
-        self::$name = $name;
+        // self::$name = $name;
     }
 
     public function getId(): string
@@ -28,9 +29,9 @@ abstract class BaseTask implements TaskInterface
         return $this->title;
     }
 
-    public static function getStatVal(): string
-    {
-        return self::$name;
-    }
+    // public static function getStatVal(): string
+    // {
+    //     return self::$name;
+    // }
     abstract public function toArray(): array;
 }
