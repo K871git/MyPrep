@@ -1311,3 +1311,6 @@ My recommendation: First understand every file and how data flows from JavaScrip
 Don't just copy the code. Try explaining why each file exists.
 
 We'll keep this as one continuous PHP revision project, and when you're ready, ask for the next step.
+
+
+========================== until the 4.1 Algorithms its done now follow from algorithms ok 
