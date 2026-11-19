@@ -1,12 +1,15 @@
 <?php
+require_once __DIR__."/error_report.php";
 $filePath = __DIR__ . "/../../resources/txtdir/app.txt";
 $file = fopen($filePath, "r"); # at this point PHP opens the file and place the pointer at the beginning "apple"
-
+$filee = __DIR__ . "/../NEWFILECONTENT.txt";
 if ($file === false) {
     die("Failed to open file..!");
 }
 
 try {
+
+    file_put_contents($filee, '[]');
     #fgets() and fgetc()
     /**
      * file contains :
@@ -23,9 +26,10 @@ try {
     // rewind($file); # pointer at start of "dominant" goes to the very start of the file "apple" with rewind()
     // echo fgets($file); # prints apple, not dominant
 
-    while (($char = fgetc($file)) !== false) {
-        echo $char . "\n";
-    }
+    // while (($char = fgetc($file)) !== false) {
+    //     echo $char . "\n";
+    // }
+
     # \n works for cmd and <br> works for the printing output in web browser
 
 

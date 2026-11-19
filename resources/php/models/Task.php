@@ -47,7 +47,7 @@ class Task extends BaseTask
 }
 
 
-$task = new Task("1", "PHP Progress");
-// echo $task->getTitle();
-// echo $task->isCompleted();
-$task->accessParent();
+// $task = new Task("1", "PHP Progress");
+// // echo $task->getTitle();
+// // echo $task->isCompleted();
+// $task->accessParent();
