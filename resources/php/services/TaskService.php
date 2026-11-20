@@ -83,7 +83,7 @@ class TaskService
     public function sortTasks(): array
     {
         $tasks = $this->getAll();
-
+        // usort($task, 'function'); # PHP expect function name as string, if not quoted then it treated as constant
         usort($tasks, function ($a, $b) {
             return strcmp($a['title'], $b['title']);
         });
@@ -107,3 +107,7 @@ class TaskService
         }
     }
 }
+
+
+// $tsk = new TaskService();
+// echo json_encode($tsk->getAll());

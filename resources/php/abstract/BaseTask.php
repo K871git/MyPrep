@@ -8,10 +8,11 @@ abstract class BaseTask implements TaskInterface
     protected string $id;
     protected string $title;
 
-    # static property
+    # static property (practice purpose)
     // public static string $name;
     public const EXACT = "constant prop";
     public const lowerCase = 'Its Lowercase cosntant';
+
     public function __construct(string $id, string $title)
     {
         $this->id = $id;
