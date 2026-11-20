@@ -16,12 +16,4 @@
 
 
 
-
-
-
-
-
-
-
-
 # finding element by checking items one by one
